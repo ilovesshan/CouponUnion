@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CouponUnion</string>
+
+    <string name="home">首页</string>
+    <string name="recommend">推荐</string>
+    <string name="special">特惠</string>
+    <string name="search">搜索</string>
+    <string name="profile">我的</string>
 </resources>
