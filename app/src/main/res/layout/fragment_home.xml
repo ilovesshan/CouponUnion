@@ -1,13 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_height="39dp"
+        android:background="@color/colorPrimary"
         android:gravity="center"
-        android:text="首页" />
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="领券"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/scan"
+            android:layout_toRightOf="@id/logo"
+            android:background="@drawable/shape_search_bar"
+            android:focusable="false"
+            android:hint="@string/search_bar_tips"
+            android:paddingLeft="10dp"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/scan"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/scan" />
+    </RelativeLayout>
+
+
+    <TableLayout
+        android:id="@+id/home_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/home_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

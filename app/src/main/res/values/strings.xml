@@ -6,4 +6,6 @@
     <string name="special">特惠</string>
     <string name="search">搜索</string>
     <string name="profile">我的</string>
+
+    <string name="search_bar_tips">搜您喜欢的</string>
 </resources>
