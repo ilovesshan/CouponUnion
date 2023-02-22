@@ -1,8 +1,12 @@
 package com.ilovesshan.couponunion.ui.fragment;
 
 import android.annotation.SuppressLint;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -66,6 +70,11 @@ public class HomeFragment extends BaseFragment implements IHomeViewCallback {
     public void onCategoriesResult(Categories categories) {
         // 分类数据获取成功
         homeCategoryAdapter.setData(categories.getData());
+    }
+
+    @Override
+    protected View loadBaseView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return inflater.inflate(R.layout.fragment_home_custom, container, false);
     }
 
     /**

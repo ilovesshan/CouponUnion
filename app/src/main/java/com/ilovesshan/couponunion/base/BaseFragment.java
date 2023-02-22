@@ -10,7 +10,6 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.motion.utils.ViewState;
 import androidx.fragment.app.Fragment;
 
 import com.ilovesshan.couponunion.R;
@@ -36,7 +35,7 @@ public abstract class BaseFragment extends Fragment implements BaseViewCallback 
     }
 
     private ViewState currentViewState = ViewState.NONE;
-    private RelativeLayout baseViewContainer;
+    private FrameLayout baseViewContainer;
 
     private View loadingView;
     private View emptyView;
@@ -46,32 +45,21 @@ public abstract class BaseFragment extends Fragment implements BaseViewCallback 
     private Unbinder unbinder;
 
 
-    @OnClick(R.id.retry_container)
-    public void retryClick(View v) {
-        LogUtil.d(BaseFragment.class, "加载失败，重新加载...");
-        onRetry(v);
-    }
+    // @OnClick(R.id.retry_container)
+    // public void retryClick(View v) {
+    //     LogUtil.d(BaseFragment.class, "加载失败，重新加载...");
+    //     onRetry(v);
+    // }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // 通过baseView根据状态来显示不同的界面(加载中、加载失败、加载成功、内容为空...)
-        final View baseViewLayout = inflater.inflate(R.layout.state_base_view, container, false);
-        baseViewContainer = baseViewLayout.findViewById(R.id.base_view_container);
-        // 将各种状态的View放入到baseViewContainer中， 后期通过updateViewState() 函数控制显示和隐藏
-        loadingView = loadLoadingView(inflater, container);
-        baseViewContainer.addView(loadingView);
-        emptyView = loadEmptyView(inflater, container);
-        baseViewContainer.addView(emptyView);
-        errorView = loadErrorView(inflater, container);
-        baseViewContainer.addView(errorView);
-        successView = loadSuccessView(inflater, container);
-        baseViewContainer.addView(successView);
+        final View baseView = loadBaseView(inflater, container);
+        baseViewContainer = baseView.findViewById(R.id.base_view_container);
+        loadBaseViewState(inflater, container);
 
-        // 默认全部隐藏掉
-        updateViewState(currentViewState);
-
-        unbinder = ButterKnife.bind(this, baseViewLayout);
+        unbinder = ButterKnife.bind(this, baseView);
 
         // 初始化view和绑定事件
         initViewAndBindEvent();
@@ -82,7 +70,42 @@ public abstract class BaseFragment extends Fragment implements BaseViewCallback 
         // 加载数据
         loadData();
 
-        return baseViewContainer;
+        return baseView;
+    }
+
+    /**
+     * 将各种状态的View放入到baseViewContainer中， 后期通过updateViewState() 函数控制显示和隐藏
+     *
+     * @param inflater  inflater
+     * @param container container
+     */
+    private void loadBaseViewState(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        loadingView = loadLoadingView(inflater, container);
+        baseViewContainer.addView(loadingView);
+
+        emptyView = loadEmptyView(inflater, container);
+        baseViewContainer.addView(emptyView);
+
+        errorView = loadErrorView(inflater, container);
+        baseViewContainer.addView(errorView);
+
+        successView = loadSuccessView(inflater, container);
+        baseViewContainer.addView(successView);
+
+        // 默认全部隐藏掉
+        updateViewState(currentViewState);
+    }
+
+
+    /**
+     * 加载 baseView, 子类复写时可以自己定制view
+     *
+     * @param inflater  inflater
+     * @param container container
+     * @return
+     */
+    protected View loadBaseView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return inflater.inflate(R.layout.state_base_view, container, false);
     }
 
     /**
@@ -156,7 +179,8 @@ public abstract class BaseFragment extends Fragment implements BaseViewCallback 
      *
      * @param v view对象
      */
-    protected void onRetry(View v) { }
+    protected void onRetry(View v) {
+    }
 
 
     @Override
