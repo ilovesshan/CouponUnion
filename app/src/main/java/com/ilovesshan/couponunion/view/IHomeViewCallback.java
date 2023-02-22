@@ -1,5 +1,6 @@
 package com.ilovesshan.couponunion.view;
 
+import com.ilovesshan.couponunion.base.BaseViewCallback;
 import com.ilovesshan.couponunion.model.entity.Categories;
 
 /**
@@ -9,7 +10,7 @@ import com.ilovesshan.couponunion.model.entity.Categories;
  * @date: 2023/2/22
  * @description:
  */
-public interface IHomeViewCallback {
+public interface IHomeViewCallback extends BaseViewCallback {
     /**
      * 分类数据加载成功的结果
      *

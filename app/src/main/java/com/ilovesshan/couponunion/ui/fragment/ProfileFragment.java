@@ -15,4 +15,9 @@ public class ProfileFragment extends BaseFragment {
     public int getResourceId() {
         return R.layout.fragment_profile;
     }
+
+    @Override
+    protected void initViewAndBindEvent() {
+        updateViewState(ViewState.SUCCESS);
+    }
 }

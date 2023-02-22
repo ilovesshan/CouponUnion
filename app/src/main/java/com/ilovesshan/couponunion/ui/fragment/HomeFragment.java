@@ -1,6 +1,7 @@
 package com.ilovesshan.couponunion.ui.fragment;
 
 import android.annotation.SuppressLint;
+import android.view.View;
 
 import androidx.viewpager.widget.ViewPager;
 
@@ -65,6 +66,16 @@ public class HomeFragment extends BaseFragment implements IHomeViewCallback {
     public void onCategoriesResult(Categories categories) {
         // 分类数据获取成功
         homeCategoryAdapter.setData(categories.getData());
+    }
+
+    /**
+     * 加载失败时， 重新加载
+     *
+     * @param v view对象
+     */
+    @Override
+    protected void onRetry(View v) {
+        presenter.getCategories();
     }
 
     @Override

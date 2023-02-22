@@ -16,4 +16,9 @@ public class SpecialFragment extends BaseFragment {
     public int getResourceId() {
         return R.layout.fragment_special;
     }
+
+    @Override
+    protected void initViewAndBindEvent() {
+        updateViewState(ViewState.SUCCESS);
+    }
 }

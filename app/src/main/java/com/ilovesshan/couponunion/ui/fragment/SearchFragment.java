@@ -16,4 +16,9 @@ public class SearchFragment extends BaseFragment {
     public int getResourceId() {
         return R.layout.fragment_search;
     }
+
+    @Override
+    protected void initViewAndBindEvent() {
+        updateViewState(ViewState.SUCCESS);
+    }
 }

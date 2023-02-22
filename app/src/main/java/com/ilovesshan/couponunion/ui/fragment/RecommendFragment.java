@@ -16,4 +16,9 @@ public class RecommendFragment extends BaseFragment {
     public int getResourceId() {
         return R.layout.fragment_recommend;
     }
+
+    @Override
+    protected void initViewAndBindEvent() {
+        updateViewState(ViewState.SUCCESS);
+    }
 }

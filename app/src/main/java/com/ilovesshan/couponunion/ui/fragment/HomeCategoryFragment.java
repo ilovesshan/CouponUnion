@@ -15,4 +15,9 @@ public class HomeCategoryFragment extends BaseFragment {
     public int getResourceId() {
         return R.layout.fragment_category_home;
     }
+
+    @Override
+    protected void initViewAndBindEvent() {
+        updateViewState(ViewState.SUCCESS);
+    }
 }

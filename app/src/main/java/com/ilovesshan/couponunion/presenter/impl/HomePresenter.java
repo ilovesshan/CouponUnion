@@ -27,28 +27,38 @@ public class HomePresenter implements IHomePresenter {
 
     @Override
     public void getCategories() {
-        final Retrofit retrofit = RetrofitManager.getInstance().getRetrofit();
-        retrofit.create(HomeApi.class).getCategories().enqueue(new Callback<Categories>() {
-            @Override
-            public void onResponse(Call<Categories> call, Response<Categories> response) {
-                final int code = response.code();
-                LogUtil.d(HomePresenter.class, "code = " + code);
-                if (code == HttpURLConnection.HTTP_OK) {
-                    if (homeViewCallback != null) {
-                        homeViewCallback.onCategoriesResult(response.body());
-                        LogUtil.d(HomePresenter.class, "response.body() = " + response.body());
-                    }
-                } else {
-                    LogUtil.d(HomePresenter.class, "请求失败: code = " + code + ", message = " + response.message());
-                }
-            }
+        if (homeViewCallback != null) {
+            // 开始加载 显示loading
+            homeViewCallback.onLoading();
 
-            @Override
-            public void onFailure(Call<Categories> call, Throwable t) {
-                LogUtil.d(HomePresenter.class, "请求失败: " + t.getMessage());
-                t.printStackTrace();
-            }
-        });
+            final Retrofit retrofit = RetrofitManager.getInstance().getRetrofit();
+            retrofit.create(HomeApi.class).getCategories().enqueue(new Callback<Categories>() {
+                @Override
+                public void onResponse(Call<Categories> call, Response<Categories> response) {
+                    final int code = response.code();
+                    LogUtil.d(HomePresenter.class, "code = " + code);
+                    if (code == HttpURLConnection.HTTP_OK) {
+                        if (response.body() != null && response.body().getData().size() > 0) {
+                            LogUtil.d(HomePresenter.class, "response.body() = " + response.body());
+                            homeViewCallback.onSuccess();
+                            homeViewCallback.onCategoriesResult(response.body());
+                        } else {
+                            homeViewCallback.onEmpty();
+                        }
+                    } else {
+                        homeViewCallback.onError();
+                        LogUtil.d(HomePresenter.class, "请求失败: code = " + code + ", message = " + response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Categories> call, Throwable t) {
+                    homeViewCallback.onError();
+                    LogUtil.d(HomePresenter.class, "请求失败: " + t.getMessage());
+                    t.printStackTrace();
+                }
+            });
+        }
     }
 
     @Override
