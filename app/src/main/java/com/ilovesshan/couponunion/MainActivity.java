@@ -21,6 +21,7 @@ import com.ilovesshan.couponunion.utils.LogUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 @SuppressLint("NonConstantResourceId")
 public class MainActivity extends AppCompatActivity {
@@ -38,12 +39,13 @@ public class MainActivity extends AppCompatActivity {
     private BaseFragment profileFragment;
 
     private FragmentManager fragmentManager;
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
 
         initViewAndBindEvent();
 
@@ -88,5 +90,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void switchFragment(BaseFragment baseFragment) {
         fragmentManager.beginTransaction().replace(R.id.main_container, baseFragment).commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (unbinder != null) {
+            unbinder.unbind();
+        }
     }
 }

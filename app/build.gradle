@@ -40,4 +40,16 @@ dependencies {
     // UI注入框架
     implementation 'com.jakewharton:butterknife:10.2.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+
+    // 网络请求
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+
+    // json解析
+    implementation 'com.google.code.gson:gson:2.6.3'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
+
+    // UI控件
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation "com.google.android.material:material:1.1.0"
 }

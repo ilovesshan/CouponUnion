@@ -9,7 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.ilovesshan.couponunion.R;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,11 +20,47 @@ import com.ilovesshan.couponunion.R;
  * @description:
  */
 public abstract class BaseFragment extends Fragment {
+
+    private Unbinder unbinder;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return loadSubView(inflater, container, savedInstanceState);
+        final View view = loadSubView(inflater, container, savedInstanceState);
+
+        unbinder = ButterKnife.bind(this, view);
+
+        // 初始化view和绑定事件
+        initViewAndBindEvent();
+
+        // 初始化 presenter
+        initPresenter();
+
+        // 加载数据
+        loadData();
+
+        return view;
     }
+
+    /**
+     * 初始化view和绑定事件
+     */
+    protected void initViewAndBindEvent() {
+    }
+
+    /**
+     * 初始化 presenter
+     */
+    protected void initPresenter() {
+    }
+
+
+    /**
+     * 加载数据
+     */
+    protected void loadData() {
+    }
+
 
     private View loadSubView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         int resourcesId = getResourceId();
@@ -31,4 +68,12 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public abstract int getResourceId();
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (unbinder != null) {
+            unbinder.unbind();
+        }
+    }
 }

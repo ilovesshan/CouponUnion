@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -34,7 +35,7 @@
             android:focusable="false"
             android:hint="@string/search_bar_tips"
             android:paddingLeft="10dp"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <ImageView
             android:id="@+id/scan"
@@ -47,10 +48,16 @@
     </RelativeLayout>
 
 
-    <TableLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/home_tab_bar"
         android:layout_width="match_parent"
-        android:layout_height="30dp" />
+        android:layout_height="30dp"
+        android:background="@color/colorPrimary"
+        app:tabIndicatorColor="@color/white"
+        app:tabMode="scrollable"
+        app:tabRippleColor="@color/white"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/grey" />
 
 
     <androidx.viewpager.widget.ViewPager
