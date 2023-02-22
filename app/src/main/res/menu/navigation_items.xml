@@ -15,7 +15,7 @@
         android:title="@string/search" />
 
     <item
-        android:id="@+id/red_packet_normal"
+        android:id="@+id/special"
         android:icon="@mipmap/navigation_bottom_special"
         android:title="@string/special" />
 
