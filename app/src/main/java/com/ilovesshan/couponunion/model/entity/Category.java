@@ -9,7 +9,7 @@ import java.util.List;
  * @date: 2023/2/22
  * @description:
  */
-public class Categories {
+public class Category {
 
     private boolean success;
     private int code;
@@ -79,7 +79,7 @@ public class Categories {
 
     @Override
     public String toString() {
-        return "Categories{" +
+        return "Category{" +
                 "success=" + success +
                 ", code=" + code +
                 ", message='" + message + '\'' +

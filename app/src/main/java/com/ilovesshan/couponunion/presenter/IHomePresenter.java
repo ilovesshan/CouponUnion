@@ -13,7 +13,7 @@ public interface IHomePresenter {
     /**
      * 获取分类数据
      */
-    void getCategories();
+    void getCategory();
 
     /**
      * 注册UI 回调接口

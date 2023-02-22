@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.ilovesshan.couponunion.model.entity.Categories;
+import com.ilovesshan.couponunion.model.entity.Category;
 import com.ilovesshan.couponunion.ui.fragment.HomeCategoryFragment;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class HomeCategoryAdapter extends FragmentPagerAdapter {
 
-    List<Categories.Data> categories = new ArrayList<>();
+    List<Category.Data> categories = new ArrayList<>();
 
     public HomeCategoryAdapter(@NonNull FragmentManager fm) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
@@ -50,7 +50,7 @@ public class HomeCategoryAdapter extends FragmentPagerAdapter {
         return super.getPageTitle(position);
     }
 
-    public void setData(List<Categories.Data> data) {
+    public void setData(List<Category.Data> data) {
         categories.clear();
         categories = data;
         notifyDataSetChanged();

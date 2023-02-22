@@ -1,6 +1,6 @@
 package com.ilovesshan.couponunion.model.api;
 
-import com.ilovesshan.couponunion.model.entity.Categories;
+import com.ilovesshan.couponunion.model.entity.Category;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -14,5 +14,5 @@ import retrofit2.http.GET;
  */
 public interface HomeApi {
     @GET("discovery/categories")
-    Call<Categories> getCategories();
+    Call<Category> getCategory();
 }

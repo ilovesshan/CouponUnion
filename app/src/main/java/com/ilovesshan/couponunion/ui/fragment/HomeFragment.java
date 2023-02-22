@@ -12,11 +12,10 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.ilovesshan.couponunion.R;
 import com.ilovesshan.couponunion.base.BaseFragment;
-import com.ilovesshan.couponunion.model.entity.Categories;
+import com.ilovesshan.couponunion.model.entity.Category;
 import com.ilovesshan.couponunion.presenter.IHomePresenter;
 import com.ilovesshan.couponunion.presenter.impl.HomePresenter;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategoryAdapter;
-import com.ilovesshan.couponunion.utils.LogUtil;
 import com.ilovesshan.couponunion.view.IHomeViewCallback;
 
 import butterknife.BindView;
@@ -63,13 +62,13 @@ public class HomeFragment extends BaseFragment implements IHomeViewCallback {
 
     @Override
     protected void loadData() {
-        presenter.getCategories();
+        presenter.getCategory();
     }
 
     @Override
-    public void onCategoriesResult(Categories categories) {
+    public void onCategoryResult(Category category) {
         // 分类数据获取成功
-        homeCategoryAdapter.setData(categories.getData());
+        homeCategoryAdapter.setData(category.getData());
     }
 
     @Override
@@ -84,7 +83,7 @@ public class HomeFragment extends BaseFragment implements IHomeViewCallback {
      */
     @Override
     protected void onRetry(View v) {
-        presenter.getCategories();
+        presenter.getCategory();
     }
 
     @Override

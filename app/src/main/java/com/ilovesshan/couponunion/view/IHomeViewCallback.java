@@ -1,7 +1,7 @@
 package com.ilovesshan.couponunion.view;
 
 import com.ilovesshan.couponunion.base.BaseViewCallback;
-import com.ilovesshan.couponunion.model.entity.Categories;
+import com.ilovesshan.couponunion.model.entity.Category;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,7 +14,7 @@ public interface IHomeViewCallback extends BaseViewCallback {
     /**
      * 分类数据加载成功的结果
      *
-     * @param categories categories
+     * @param category category
      */
-    void onCategoriesResult(Categories categories);
+    void onCategoryResult(Category category);
 }
