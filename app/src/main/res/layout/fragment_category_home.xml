@@ -8,9 +8,37 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/category_swiper"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_marginBottom="20dp" />
+        android:layout_height="220dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
+
+        <View
+            android:layout_width="15dp"
+            android:layout_height="6dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shape_category_title_tag" />
+
+        <TextView
+            android:id="@+id/category_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="推荐"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="15dp"
+            android:layout_height="6dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shape_category_title_tag" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/category_list"

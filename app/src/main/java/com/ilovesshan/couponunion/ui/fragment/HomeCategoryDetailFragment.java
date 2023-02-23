@@ -3,6 +3,7 @@ package com.ilovesshan.couponunion.ui.fragment;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,6 +44,11 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
     @BindView(R.id.category_swiper)
     public ViewPager categorySwiper;
+
+    @BindView(R.id.category_title)
+    public TextView tvCategoryTitle;
+
+
     private HomeCategorySwiperAdapter homeCategorySwiperAdapter;
 
     /**
@@ -93,7 +99,11 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
         LogUtil.d(HomeCategoryDetailFragment.class, "categoryId = " + categoryId);
         LogUtil.d(HomeCategoryDetailFragment.class, "categoryTitle = " + categoryTitle);
 
+        // 请求分类数据
         homeCategoryDetailPresenter.getCategoryDetail(categoryId, 1);
+
+        // 设置分类标题
+        tvCategoryTitle.setText(categoryTitle);
     }
 
     @Override
