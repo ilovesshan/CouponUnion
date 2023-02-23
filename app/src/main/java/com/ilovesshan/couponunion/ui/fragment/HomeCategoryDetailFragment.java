@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +19,7 @@ import com.ilovesshan.couponunion.ui.adapter.HomeCategoryDetailAdapter;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategorySwiperAdapter;
 import com.ilovesshan.couponunion.utils.LogUtil;
 import com.ilovesshan.couponunion.utils.ScreenUtil;
+import com.ilovesshan.couponunion.utils.ToastUtil;
 import com.ilovesshan.couponunion.view.IHomeCategoryDetailViewCallBack;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
@@ -208,7 +208,7 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
     @Override
     public void onCategoryDetailLoadMoreResult(CategoryDetail categoryDetail) {
-        Toast.makeText(getContext(), "成功加载了" + categoryDetail.getData().size() + "条数据", Toast.LENGTH_SHORT).show();
+        ToastUtil.show("成功加载了" + categoryDetail.getData().size() + "条数据!");
         homeCategoryDetailAdapter.addData(categoryDetail.getData());
         smartRefreshLayout.finishLoadMore(true);
     }
@@ -244,13 +244,13 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
     @Override
     public void onLoadMoreError() {
-        Toast.makeText(getContext(), "加载失败了，稍后再试试吧！", Toast.LENGTH_SHORT).show();
+        ToastUtil.show("加载失败了，稍后再试试吧！");
         smartRefreshLayout.finishLoadMore(false);
     }
 
     @Override
     public void onLoadMoreEmpty() {
-        Toast.makeText(getContext(), "没有更多数据啦~", Toast.LENGTH_SHORT).show();
+        ToastUtil.show("没有更多数据啦！");
         smartRefreshLayout.finishLoadMore(0, false, false);
     }
 
