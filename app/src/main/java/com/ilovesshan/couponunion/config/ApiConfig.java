@@ -10,4 +10,6 @@ package com.ilovesshan.couponunion.config;
 public class ApiConfig {
     public static final String BASE_URL = "https://api.sunofbeaches.com/shop/";
     public static final int BASE_TIMEOUT = 3000;
+
+    public static final String PROTOCOL = "https:";
 }

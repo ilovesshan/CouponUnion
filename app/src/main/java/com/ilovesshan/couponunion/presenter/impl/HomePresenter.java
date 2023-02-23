@@ -30,8 +30,7 @@ public class HomePresenter implements IHomePresenter {
             // 开始加载 显示loading
             homeViewCallback.onLoading();
 
-            final Retrofit retrofit = RetrofitManager.getInstance().getRetrofit();
-            retrofit.create(HomeApi.class).getCategory().enqueue(new Callback<Category>() {
+            RetrofitManager.getServiceApi(HomeApi.class).getCategory().enqueue(new Callback<Category>() {
                 @Override
                 public void onResponse(Call<Category> call, Response<Category> response) {
                     final int code = response.code();

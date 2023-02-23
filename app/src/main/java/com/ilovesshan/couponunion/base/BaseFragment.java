@@ -45,11 +45,11 @@ public abstract class BaseFragment extends Fragment implements BaseViewCallback 
     private Unbinder unbinder;
 
 
-    // @OnClick(R.id.retry_container)
-    // public void retryClick(View v) {
-    //     LogUtil.d(BaseFragment.class, "加载失败，重新加载...");
-    //     onRetry(v);
-    // }
+    @OnClick(R.id.retry_container)
+    public void retryClick(View v) {
+        LogUtil.d(BaseFragment.class, "加载失败，重新加载...");
+        onRetry(v);
+    }
 
     @Nullable
     @Override

@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.ilovesshan.couponunion.model.entity.Category;
-import com.ilovesshan.couponunion.ui.fragment.HomeCategoryFragment;
+import com.ilovesshan.couponunion.ui.fragment.HomeCategoryDetailFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,9 @@ public class HomeCategoryAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return new HomeCategoryFragment();
+        final Category.Data data = categories.get(position);
+        // 将当前Pager项的分类id和标题传递给HomeCategoryFragment, 通过HomeCategoryFragment 去请求并展示数据
+        return HomeCategoryDetailFragment.getHomeCategoryFragment(data.getId(), data.getTitle());
     }
 
     @Override
@@ -52,7 +54,7 @@ public class HomeCategoryAdapter extends FragmentPagerAdapter {
 
     public void setData(List<Category.Data> data) {
         categories.clear();
-        categories = data;
+        categories.addAll(data);
         notifyDataSetChanged();
     }
 }

@@ -2,6 +2,7 @@ package com.ilovesshan.couponunion.utils;
 
 import com.google.gson.Gson;
 import com.ilovesshan.couponunion.config.ApiConfig;
+import com.ilovesshan.couponunion.model.api.HomeApi;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -35,5 +36,10 @@ public class RetrofitManager {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit;
+    }
+
+    public static <T> T getServiceApi(Class<T> tClass) {
+        final Retrofit retrofit = RetrofitManager.getInstance().getRetrofit();
+        return retrofit.create(tClass);
     }
 }

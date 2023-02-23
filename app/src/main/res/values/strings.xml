@@ -8,4 +8,10 @@
     <string name="profile">我的</string>
 
     <string name="search_bar_tips">搜您喜欢的</string>
+
+    <string name="goods_reduce_money">省%1$.2f元</string>
+    <string name="goods_reduce_after_money">券后价：%1$.2f</string>
+    <string name="goods_origin_price">￥%1$.2f</string>
+    <string name="goods_sales_count">%1$d已购买</string>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.ilovesshan.couponunion.presenter;
 
+import com.ilovesshan.couponunion.base.BasePresenter;
 import com.ilovesshan.couponunion.view.IHomeViewCallback;
 
 /**
@@ -9,23 +10,9 @@ import com.ilovesshan.couponunion.view.IHomeViewCallback;
  * @date: 2023/2/22
  * @description:
  */
-public interface IHomePresenter {
+public interface IHomePresenter extends BasePresenter<IHomeViewCallback> {
     /**
      * 获取分类数据
      */
     void getCategory();
-
-    /**
-     * 注册UI 回调接口
-     *
-     * @param iHomeViewCallback iHomeViewCallback
-     */
-    void registerViewCallBack(IHomeViewCallback iHomeViewCallback);
-
-    /**
-     * 取消注册UI 回调接口
-     *
-     * @param iHomeViewCallback iHomeViewCallback
-     */
-    void unRegisterViewCallBack(IHomeViewCallback iHomeViewCallback);
 }
