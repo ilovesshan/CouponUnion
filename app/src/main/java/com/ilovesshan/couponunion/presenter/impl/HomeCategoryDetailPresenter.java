@@ -1,9 +1,6 @@
 package com.ilovesshan.couponunion.presenter.impl;
 
-import android.util.Log;
-
-import com.ilovesshan.couponunion.base.BaseFragment;
-import com.ilovesshan.couponunion.base.BaseViewCallback;
+import com.ilovesshan.couponunion.config.Constants;
 import com.ilovesshan.couponunion.model.api.HomeApi;
 import com.ilovesshan.couponunion.model.entity.CategoryDetail;
 import com.ilovesshan.couponunion.presenter.IHomeCategoryDetailPresenter;
@@ -141,7 +138,7 @@ public class HomeCategoryDetailPresenter implements IHomeCategoryDetailPresenter
                 // 返回分类轮播图
                 final List<CategoryDetail.Data> dataList = response.body().getData();
                 // 返回最后五条数据
-                callBack.onCategorySwiperResult(dataList.subList(dataList.size() - 5, dataList.size()));
+                callBack.onCategorySwiperResult(dataList.subList(dataList.size() - Constants.SWIPER_COUNT_LENGTH, dataList.size()));
             }
         }
     }

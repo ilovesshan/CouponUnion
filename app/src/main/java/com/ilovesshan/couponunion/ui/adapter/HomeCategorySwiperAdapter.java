@@ -1,5 +1,6 @@
 package com.ilovesshan.couponunion.ui.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +24,14 @@ import java.util.List;
  * @date: 2023/2/23
  * @description:
  */
+
 public class HomeCategorySwiperAdapter extends PagerAdapter {
     private List<CategoryDetail.Data> swiperData = new ArrayList<>();
 
     @Override
     public int getCount() {
-        return swiperData.size();
+        // return swiperData.size();
+        return Integer.MAX_VALUE;
     }
 
     @Override
@@ -39,22 +42,27 @@ public class HomeCategorySwiperAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        final View view = LayoutInflater.from(container.getContext()).inflate(R.layout.fragment_home_category_swiper, container, false);
-        ImageView imageView = view.findViewById(R.id.swiper_image);
-        Glide.with(container.getContext()).load(ApiConfig.PROTOCOL + swiperData.get(position).getPict_url()).into(imageView);
+        final Context context = container.getContext();
+        final View view = LayoutInflater.from(context).inflate(R.layout.fragment_home_category_swiper, container, false);
+
+        // 实际的position
+        int realPosition = position % swiperData.size();
+
+        // 轮播图图片
+        ImageView swiperImage = view.findViewById(R.id.swiper_image);
+        Glide.with(context).load(ApiConfig.PROTOCOL + swiperData.get(realPosition).getPict_url()).into(swiperImage);
         container.addView(view);
         return view;
     }
-
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View) object);
     }
 
-    public void setData(List<CategoryDetail.Data> images) {
+    public void setData(List<CategoryDetail.Data> swiperData) {
         this.swiperData.clear();
-        this.swiperData.addAll(images);
+        this.swiperData.addAll(swiperData);
         notifyDataSetChanged();
     }
 }

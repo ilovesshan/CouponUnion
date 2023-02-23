@@ -3,6 +3,7 @@ package com.ilovesshan.couponunion.ui.fragment;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,9 +18,12 @@ import com.ilovesshan.couponunion.presenter.impl.HomeCategoryDetailPresenter;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategoryDetailAdapter;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategorySwiperAdapter;
 import com.ilovesshan.couponunion.utils.LogUtil;
+import com.ilovesshan.couponunion.utils.ScreenUtil;
 import com.ilovesshan.couponunion.view.IHomeCategoryDetailViewCallBack;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 
@@ -48,8 +52,14 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
     @BindView(R.id.category_title)
     public TextView tvCategoryTitle;
 
+    @BindView(R.id.swiper_indicator_container)
+    public LinearLayout swiperIndicatorSwiper;
+
 
     private HomeCategorySwiperAdapter homeCategorySwiperAdapter;
+    private int swiperCountLength = 0;
+    private TimerTask timerTask;
+    private Timer timer;
 
     /**
      * 通过获取HomeCategoryFragment 实例来传递参数
@@ -82,6 +92,65 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
         // 为分类轮播图设置设配器
         homeCategorySwiperAdapter = new HomeCategorySwiperAdapter();
         categorySwiper.setAdapter(homeCategorySwiperAdapter);
+
+        // 轮播图切换监听
+        categorySwiper.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                int realPosition = position % swiperCountLength;
+                LogUtil.d(HomeCategoryDetailFragment.class, "position = " + position + ", realPosition = " + realPosition);
+                changeSwiperIndicator(realPosition);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
+        //TODO:  开启定时器任务 进行轮播图自动轮播
+    }
+
+    /**
+     * 开启定时器任务 进行轮播图自动轮播
+     */
+    private void startLopperTask() {
+        timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                LogUtil.d(HomeCategoryDetailFragment.class, "定时器任务 == " + categoryId);
+            }
+        };
+        timer = new Timer();
+        timer.schedule(timerTask, 2000, 2000);
+    }
+
+    /**
+     * 关闭定时器任务
+     */
+    private void stopLopperTask() {
+        if (timerTask != null) timerTask.cancel();
+        if (timer != null) timer.cancel();
+    }
+
+
+    /**
+     * 改变轮播图指示器点
+     *
+     * @param realPosition 当前选中点索引
+     */
+    private void changeSwiperIndicator(int realPosition) {
+        for (int i = 0; i < swiperIndicatorSwiper.getChildCount(); i++) {
+            final View swiperChild = swiperIndicatorSwiper.getChildAt(i);
+            if (i == realPosition) {
+                swiperChild.setBackgroundResource(R.drawable.shape_swiper_indicator_selected);
+            } else {
+                swiperChild.setBackgroundResource(R.drawable.shape_swiper_indicator_un_selected);
+            }
+        }
     }
 
     @Override
@@ -114,8 +183,31 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
     @Override
     public void onCategorySwiperResult(List<CategoryDetail.Data> smallImages) {
-        LogUtil.d(HomeCategoryDetailFragment.class, "smallImages = " + smallImages);
+        this.swiperCountLength = smallImages.size();
         homeCategorySwiperAdapter.setData(smallImages);
+        // 确保targetNum是smallImages.size()的倍数
+        int targetNum = (Integer.MAX_VALUE / 2) - (Integer.MAX_VALUE / 2 % smallImages.size());
+        // 将当前页置于中间
+        if (categorySwiper != null) {
+            categorySwiper.setCurrentItem(targetNum);
+        }
+        // 轮播图指示器容器
+        final int px10 = ScreenUtil.dip2px(getContext(), 10);
+        final int px5 = ScreenUtil.dip2px(getContext(), 5);
+        final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(px10, px10);
+        layoutParams.setMargins(px5, 0, px5, 0);
+        for (int i = 0; i < smallImages.size(); i++) {
+            final View indicatorItemView = new View(getContext());
+            indicatorItemView.setLayoutParams(layoutParams);
+            if (i == 0) {
+                indicatorItemView.setBackgroundResource(R.drawable.shape_swiper_indicator_selected);
+            } else {
+                indicatorItemView.setBackgroundResource(R.drawable.shape_swiper_indicator_un_selected);
+            }
+            if (swiperIndicatorSwiper != null) {
+                swiperIndicatorSwiper.addView(indicatorItemView);
+            }
+        }
     }
 
     @Override
@@ -144,6 +236,7 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
         if (homeCategoryDetailPresenter != null) {
             homeCategoryDetailPresenter.unRegisterViewCallBack(this);
         }
+        // stopLopperTask();
     }
 
     @Override

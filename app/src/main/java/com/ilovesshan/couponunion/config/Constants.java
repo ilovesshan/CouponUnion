@@ -10,4 +10,6 @@ package com.ilovesshan.couponunion.config;
 public class Constants {
     public static final String HOME_CATEGORY_PAGER_ID = "home_category_pager_id";
     public static final String HOME_CATEGORY_PAGER_TITLE = "home_category_pager_title";
+
+    public static final int SWIPER_COUNT_LENGTH = 5;
 }
