@@ -42,6 +42,7 @@ public class HomeCategoryDetailPresenter implements IHomeCategoryDetailPresenter
      * 保存当前页面信息(分类ID:请求页码数)
      */
     private Map<Integer, Integer> currentPageInfo = new HashMap<>();
+    private Integer currentPage;
 
     private HomeCategoryDetailPresenter() {
     }
@@ -55,7 +56,6 @@ public class HomeCategoryDetailPresenter implements IHomeCategoryDetailPresenter
 
     @Override
     public void getCategoryDetail(int categoryId, int page) {
-
         // 根据分类ID获取当前类别的页码
         Integer currentPage = currentPageInfo.get(categoryId);
         if (currentPage == null) {
@@ -143,9 +143,97 @@ public class HomeCategoryDetailPresenter implements IHomeCategoryDetailPresenter
         }
     }
 
-    @Override
-    public void loadMore(int categoryId, int page) {
 
+    /**
+     * 处理数据请求加载更多失败的情况
+     *
+     * @param categoryId 分类ID
+     */
+    private void handleLoadMoreError(int categoryId) {
+        // 如果加载失败了，需要将页码减一
+        currentPage--;
+        currentPageInfo.put(categoryId, currentPage);
+        // 通知UI更新
+        for (IHomeCategoryDetailViewCallBack callBack : homeCategoryDetailViewCallBacks) {
+            if (callBack.getCurrentCategoryId() == categoryId) {
+                callBack.onLoadMoreError();
+            }
+        }
+    }
+
+    /**
+     * 处理数据请求加载更多为空的情况
+     *
+     * @param categoryId 分类ID
+     */
+    private void handleLoadMoreEmpty(int categoryId) {
+        // 如果加载为空，需要将页码减一
+        currentPage--;
+        currentPageInfo.put(categoryId, currentPage);
+        for (IHomeCategoryDetailViewCallBack callBack : homeCategoryDetailViewCallBacks) {
+            if (callBack.getCurrentCategoryId() == categoryId) {
+                callBack.onLoadMoreEmpty();
+            }
+        }
+    }
+
+    /**
+     * 处理数据请求加载更多成功的情况
+     *
+     * @param categoryId 分类ID
+     */
+    private void handleLoadMoreSuccess(Response<CategoryDetail> response, int categoryId) {
+        for (IHomeCategoryDetailViewCallBack callBack : homeCategoryDetailViewCallBacks) {
+            if (callBack.getCurrentCategoryId() == categoryId) {
+                // 返回分类列表
+                callBack.onCategoryDetailLoadMoreResult(response.body());
+            }
+        }
+    }
+
+
+    /**
+     * 下拉刷新 加载更多
+     *
+     * @param categoryId 分类ID
+     */
+    @Override
+    public void loadMore(int categoryId) {
+        currentPage = currentPageInfo.get(categoryId);
+        if (currentPage == null) {
+            currentPage = DEFAULT_PAGE;
+        }
+        currentPage++;
+        currentPageInfo.put(categoryId, currentPage);
+        LogUtil.d(HomeCategoryDetailPresenter.class, "categoryId = " + categoryId + ", currentPage = " + currentPage);
+        RetrofitManager.getServiceApi(HomeApi.class).getCategoryDetail(categoryId, currentPage).enqueue(new Callback<CategoryDetail>() {
+            @Override
+            public void onResponse(Call<CategoryDetail> call, Response<CategoryDetail> response) {
+                final int code = response.code();
+                LogUtil.d(HomeCategoryDetailPresenter.class, "code = " + code);
+                if (code == HttpURLConnection.HTTP_OK) {
+                    if (response.body() != null && response.body().getData().size() > 0) {
+                        LogUtil.d(HomePresenter.class, "response.body() = " + response.body());
+                        // 请求成功
+                        handleLoadMoreSuccess(response, categoryId);
+                    } else {
+                        // 请求数据为空
+                        handleLoadMoreEmpty(categoryId);
+                    }
+                } else {
+                    // 请求数据失败
+                    handleLoadMoreError(categoryId);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CategoryDetail> call, Throwable t) {
+                LogUtil.d(HomePresenter.class, "请求失败: " + t.getMessage());
+                t.printStackTrace();
+                // 请求数据
+                handleLoadMoreError(categoryId);
+            }
+        });
     }
 
     @Override

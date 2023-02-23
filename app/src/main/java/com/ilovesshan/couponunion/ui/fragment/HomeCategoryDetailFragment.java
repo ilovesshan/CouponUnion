@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +21,9 @@ import com.ilovesshan.couponunion.ui.adapter.HomeCategorySwiperAdapter;
 import com.ilovesshan.couponunion.utils.LogUtil;
 import com.ilovesshan.couponunion.utils.ScreenUtil;
 import com.ilovesshan.couponunion.view.IHomeCategoryDetailViewCallBack;
+import com.scwang.smart.refresh.footer.ClassicsFooter;
+import com.scwang.smart.refresh.header.ClassicsHeader;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 import java.util.List;
 import java.util.Timer;
@@ -42,6 +46,9 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
     private String categoryTitle;
 
     private HomeCategoryDetailAdapter homeCategoryDetailAdapter;
+
+    @BindView(R.id.smart_refresh)
+    public SmartRefreshLayout smartRefreshLayout;
 
     @BindView(R.id.category_list)
     public RecyclerView categoryList;
@@ -111,7 +118,25 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
             }
         });
 
-        //TODO:  开启定时器任务 进行轮播图自动轮播
+
+        // 处理分类列表下拉刷新和上拉加载更多
+        smartRefreshLayout.setRefreshHeader(new ClassicsHeader(getContext()));
+        smartRefreshLayout.setRefreshFooter(new ClassicsFooter(getContext()));
+        smartRefreshLayout.setEnableLoadMore(true);
+        smartRefreshLayout.setEnableRefresh(true);
+
+        // 下拉刷新
+        smartRefreshLayout.setOnRefreshListener(refresh -> {
+            smartRefreshLayout.finishRefresh(2000);
+        });
+
+        // 上拉加载
+        smartRefreshLayout.setOnLoadMoreListener(refresh -> {
+            homeCategoryDetailPresenter.loadMore(categoryId);
+        });
+
+        // TODO:  开启定时器任务 进行轮播图自动轮播
+
     }
 
     /**
@@ -178,7 +203,14 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
     @Override
     public void onCategoryDetailResult(CategoryDetail categoryDetail) {
         LogUtil.d(HomeCategoryDetailFragment.class, "categoryDetail = " + categoryDetail);
-        homeCategoryDetailAdapter.setData(categoryDetail.getData());
+        homeCategoryDetailAdapter.setCategoryDetailList(categoryDetail.getData());
+    }
+
+    @Override
+    public void onCategoryDetailLoadMoreResult(CategoryDetail categoryDetail) {
+        Toast.makeText(getContext(), "成功加载了" + categoryDetail.getData().size() + "条数据", Toast.LENGTH_SHORT).show();
+        homeCategoryDetailAdapter.addData(categoryDetail.getData());
+        smartRefreshLayout.finishLoadMore(true);
     }
 
     @Override
@@ -212,17 +244,14 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
     @Override
     public void onLoadMoreError() {
-
+        Toast.makeText(getContext(), "加载失败了，稍后再试试吧！", Toast.LENGTH_SHORT).show();
+        smartRefreshLayout.finishLoadMore(false);
     }
 
     @Override
     public void onLoadMoreEmpty() {
-
-    }
-
-    @Override
-    public void onLoadMoreLoading() {
-
+        Toast.makeText(getContext(), "没有更多数据啦~", Toast.LENGTH_SHORT).show();
+        smartRefreshLayout.finishLoadMore(0, false, false);
     }
 
     @Override

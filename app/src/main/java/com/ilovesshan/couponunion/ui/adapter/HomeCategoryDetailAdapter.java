@@ -12,14 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.ilovesshan.couponunion.R;
 import com.ilovesshan.couponunion.config.ApiConfig;
 import com.ilovesshan.couponunion.model.entity.CategoryDetail;
 
 import java.util.ArrayList;
-
-
-import com.ilovesshan.couponunion.R;
-
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,7 +31,7 @@ import butterknife.ButterKnife;
  */
 @SuppressLint("NonConstantResourceId")
 public class HomeCategoryDetailAdapter extends RecyclerView.Adapter<HomeCategoryDetailAdapter.InnerHolder> {
-    private List<CategoryDetail.Data> data = new ArrayList<>();
+    private List<CategoryDetail.Data> categoryDetailList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -45,18 +42,29 @@ public class HomeCategoryDetailAdapter extends RecyclerView.Adapter<HomeCategory
 
     @Override
     public void onBindViewHolder(@NonNull InnerHolder holder, int position) {
-        holder.setData(data.get(position));
+        holder.setData(categoryDetailList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return categoryDetailList.size();
     }
 
-    public void setData(List<CategoryDetail.Data> data) {
-        this.data.clear();
-        this.data.addAll(data);
+    public void setCategoryDetailList(List<CategoryDetail.Data> categoryDetailList) {
+        this.categoryDetailList.clear();
+        this.categoryDetailList.addAll(categoryDetailList);
         notifyDataSetChanged();
+    }
+
+    /**
+     * 新增新数据(加载更多)
+     *
+     * @param categoryDetailList categoryDetailList
+     */
+    public void addData(List<CategoryDetail.Data> categoryDetailList) {
+        int oldIndex = this.categoryDetailList.size();
+        this.categoryDetailList.addAll(categoryDetailList);
+        notifyItemChanged(oldIndex, categoryDetailList.size());
     }
 
     public class InnerHolder extends RecyclerView.ViewHolder {

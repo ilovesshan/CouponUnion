@@ -1,7 +1,6 @@
 package com.ilovesshan.couponunion.view;
 
 import com.ilovesshan.couponunion.base.BaseViewCallback;
-import com.ilovesshan.couponunion.model.entity.Category;
 import com.ilovesshan.couponunion.model.entity.CategoryDetail;
 
 import java.util.List;
@@ -21,6 +20,14 @@ public interface IHomeCategoryDetailViewCallBack extends BaseViewCallback {
      */
     void onCategoryDetailResult(CategoryDetail categoryDetail);
 
+
+    /**
+     * 分类详情数据加载更多成功的结果
+     *
+     * @param categoryDetail categoryDetail
+     */
+    void onCategoryDetailLoadMoreResult(CategoryDetail categoryDetail);
+
     /**
      * 分类详情数据轮播图加载成功的结果
      *
@@ -37,11 +44,6 @@ public interface IHomeCategoryDetailViewCallBack extends BaseViewCallback {
      * 数据请求结果为空
      */
     void onLoadMoreEmpty();
-
-    /**
-     * 数据请求中
-     */
-    void onLoadMoreLoading();
 
     /**
      * 获取当前分类的ID

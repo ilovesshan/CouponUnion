@@ -2,7 +2,6 @@ package com.ilovesshan.couponunion.presenter;
 
 import com.ilovesshan.couponunion.base.BasePresenter;
 import com.ilovesshan.couponunion.view.IHomeCategoryDetailViewCallBack;
-import com.ilovesshan.couponunion.view.IHomeViewCallback;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,9 +24,8 @@ public interface IHomeCategoryDetailPresenter extends BasePresenter<IHomeCategor
      * 上拉加载更多
      *
      * @param categoryId 分类ID
-     * @param page       页码
      */
-    void loadMore(int categoryId, int page);
+    void loadMore(int categoryId);
 
     /**
      * 下拉刷新
