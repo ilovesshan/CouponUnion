@@ -136,7 +136,12 @@ public class HomeCategoryDetailPresenter implements IHomeCategoryDetailPresenter
         for (IHomeCategoryDetailViewCallBack callBack : homeCategoryDetailViewCallBacks) {
             if (callBack.getCurrentCategoryId() == categoryId) {
                 callBack.onSuccess();
+                // 返回分类列表
                 callBack.onCategoryDetailResult(response.body());
+                // 返回分类轮播图
+                final List<CategoryDetail.Data> dataList = response.body().getData();
+                // 返回最后五条数据
+                callBack.onCategorySwiperResult(dataList.subList(dataList.size() - 5, dataList.size()));
             }
         }
     }

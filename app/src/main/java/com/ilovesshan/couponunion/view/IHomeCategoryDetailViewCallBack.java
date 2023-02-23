@@ -4,6 +4,8 @@ import com.ilovesshan.couponunion.base.BaseViewCallback;
 import com.ilovesshan.couponunion.model.entity.Category;
 import com.ilovesshan.couponunion.model.entity.CategoryDetail;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -19,6 +21,12 @@ public interface IHomeCategoryDetailViewCallBack extends BaseViewCallback {
      */
     void onCategoryDetailResult(CategoryDetail categoryDetail);
 
+    /**
+     * 分类详情数据轮播图加载成功的结果
+     *
+     * @param smallImages smallImages
+     */
+    void onCategorySwiperResult(List<CategoryDetail.Data> smallImages);
 
     /**
      * 数据请求失败

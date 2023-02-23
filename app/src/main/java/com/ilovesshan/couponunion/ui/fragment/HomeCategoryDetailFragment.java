@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.ilovesshan.couponunion.R;
 import com.ilovesshan.couponunion.base.BaseFragment;
@@ -13,8 +14,11 @@ import com.ilovesshan.couponunion.config.Constants;
 import com.ilovesshan.couponunion.model.entity.CategoryDetail;
 import com.ilovesshan.couponunion.presenter.impl.HomeCategoryDetailPresenter;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategoryDetailAdapter;
+import com.ilovesshan.couponunion.ui.adapter.HomeCategorySwiperAdapter;
 import com.ilovesshan.couponunion.utils.LogUtil;
 import com.ilovesshan.couponunion.view.IHomeCategoryDetailViewCallBack;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -36,6 +40,10 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
     @BindView(R.id.category_list)
     public RecyclerView categoryList;
+
+    @BindView(R.id.category_swiper)
+    public ViewPager categorySwiper;
+    private HomeCategorySwiperAdapter homeCategorySwiperAdapter;
 
     /**
      * 通过获取HomeCategoryFragment 实例来传递参数
@@ -60,11 +68,14 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
     @Override
     protected void initViewAndBindEvent() {
-        // 设置布局管理器
+        // 为分类列表 设置布局管理器和设置设配器
         categoryList.setLayoutManager(new LinearLayoutManager(getContext()));
-        // 初始化和设置设配器
         homeCategoryDetailAdapter = new HomeCategoryDetailAdapter();
         categoryList.setAdapter(homeCategoryDetailAdapter);
+
+        // 为分类轮播图设置设配器
+        homeCategorySwiperAdapter = new HomeCategorySwiperAdapter();
+        categorySwiper.setAdapter(homeCategorySwiperAdapter);
     }
 
     @Override
@@ -89,6 +100,12 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
     public void onCategoryDetailResult(CategoryDetail categoryDetail) {
         LogUtil.d(HomeCategoryDetailFragment.class, "categoryDetail = " + categoryDetail);
         homeCategoryDetailAdapter.setData(categoryDetail.getData());
+    }
+
+    @Override
+    public void onCategorySwiperResult(List<CategoryDetail.Data> smallImages) {
+        LogUtil.d(HomeCategoryDetailFragment.class, "smallImages = " + smallImages);
+        homeCategorySwiperAdapter.setData(smallImages);
     }
 
     @Override
