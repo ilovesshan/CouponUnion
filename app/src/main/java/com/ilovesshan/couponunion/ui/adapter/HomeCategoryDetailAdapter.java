@@ -13,8 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ilovesshan.couponunion.R;
-import com.ilovesshan.couponunion.config.ApiConfig;
 import com.ilovesshan.couponunion.model.entity.CategoryDetail;
+import com.ilovesshan.couponunion.utils.LogUtil;
+import com.ilovesshan.couponunion.utils.UrlUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +94,11 @@ public class HomeCategoryDetailAdapter extends RecyclerView.Adapter<HomeCategory
             final float originPrice = (couponAmount + finalPrice);
 
             // 设置商品图片
-            Glide.with(itemView.getContext()).load(ApiConfig.PROTOCOL + data.getPict_url()).into(goodsCover);
+            final ViewGroup.LayoutParams layoutParams = goodsCover.getLayoutParams();
+            final int targetHeight = (Math.max(layoutParams.width, layoutParams.height)) / 2;
+            final String optimizationImageUrl = UrlUtil.getOptimizationImageUrl(data.getPict_url(), targetHeight);
+            LogUtil.d(InnerHolder.class, "optimizationImageUrl = " + optimizationImageUrl);
+            Glide.with(itemView.getContext()).load(optimizationImageUrl).into(goodsCover);
 
             // 设置商品标题
             goodsTitle.setText(data.getTitle());
