@@ -3,6 +3,8 @@ package com.ilovesshan.couponunion.ui.fragment;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ import com.ilovesshan.couponunion.model.entity.CategoryDetail;
 import com.ilovesshan.couponunion.presenter.impl.HomeCategoryDetailPresenter;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategoryDetailAdapter;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategorySwiperAdapter;
+import com.ilovesshan.couponunion.ui.custom.YfNestedScrollView;
 import com.ilovesshan.couponunion.utils.LogUtil;
 import com.ilovesshan.couponunion.utils.ScreenUtil;
 import com.ilovesshan.couponunion.utils.ToastUtil;
@@ -50,6 +53,9 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
     @BindView(R.id.smart_refresh)
     public SmartRefreshLayout smartRefreshLayout;
 
+    @BindView(R.id.category_home_container)
+    public LinearLayout categoryHomeContainer;
+
     @BindView(R.id.category_list)
     public RecyclerView categoryList;
 
@@ -61,6 +67,12 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
     @BindView(R.id.swiper_indicator_container)
     public LinearLayout swiperIndicatorSwiper;
+
+    @BindView(R.id.category_home_nested_scroll_view)
+    public YfNestedScrollView categoryHomeNestedScrollView;
+
+    @BindView(R.id.swiper_and_title_container)
+    public LinearLayout swiperAndTitleContainer;
 
 
     private HomeCategorySwiperAdapter homeCategorySwiperAdapter;
@@ -118,6 +130,25 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
             }
         });
 
+        // 动态设置RecyclerView高度，解决NestedScrollView导致RecyclerView的item没达到复用效果
+        categoryHomeContainer.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                final int measuredHeight = categoryHomeContainer.getMeasuredHeight();
+                final ViewGroup.LayoutParams layoutParams = categoryList.getLayoutParams();
+
+                // 获取(轮播图 + 标题栏的高度)
+                final int swiperAndTitleContainerMeasuredHeight = swiperAndTitleContainer.getMeasuredHeight();
+                if (swiperAndTitleContainerMeasuredHeight > 0) {
+                    categoryHomeNestedScrollView.setNeedConsumeHeight(swiperAndTitleContainerMeasuredHeight);
+                }
+                layoutParams.height = measuredHeight;
+                categoryList.setLayoutParams(layoutParams);
+                if (measuredHeight > 0) {
+                    categoryHomeContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }
+            }
+        });
 
         // 处理分类列表下拉刷新和上拉加载更多
         smartRefreshLayout.setRefreshHeader(new ClassicsHeader(getContext()));

@@ -37,12 +37,14 @@ public class HomeCategoryDetailAdapter extends RecyclerView.Adapter<HomeCategory
     @NonNull
     @Override
     public InnerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LogUtil.d(HomeCategoryDetailAdapter.class, "onCreateViewHolder...");
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_category, parent, false);
         return new InnerHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull InnerHolder holder, int position) {
+        LogUtil.d(HomeCategoryDetailAdapter.class, "onBindViewHolder..." + position);
         holder.setData(categoryDetailList.get(position));
     }
 
