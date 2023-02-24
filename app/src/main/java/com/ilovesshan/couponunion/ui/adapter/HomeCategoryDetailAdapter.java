@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.ilovesshan.couponunion.R;
 import com.ilovesshan.couponunion.model.entity.CategoryDetail;
-import com.ilovesshan.couponunion.utils.LogUtil;
 import com.ilovesshan.couponunion.utils.UrlUtil;
 
 import java.util.ArrayList;
@@ -37,14 +36,12 @@ public class HomeCategoryDetailAdapter extends RecyclerView.Adapter<HomeCategory
     @NonNull
     @Override
     public InnerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LogUtil.d(HomeCategoryDetailAdapter.class, "onCreateViewHolder...");
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_category, parent, false);
         return new InnerHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull InnerHolder holder, int position) {
-        LogUtil.d(HomeCategoryDetailAdapter.class, "onBindViewHolder..." + position);
         holder.setData(categoryDetailList.get(position));
     }
 
@@ -99,7 +96,6 @@ public class HomeCategoryDetailAdapter extends RecyclerView.Adapter<HomeCategory
             final ViewGroup.LayoutParams layoutParams = goodsCover.getLayoutParams();
             final int targetHeight = (Math.max(layoutParams.width, layoutParams.height)) / 2;
             final String optimizationImageUrl = UrlUtil.getOptimizationImageUrl(data.getPict_url(), targetHeight);
-            LogUtil.d(InnerHolder.class, "optimizationImageUrl = " + optimizationImageUrl);
             Glide.with(itemView.getContext()).load(optimizationImageUrl).into(goodsCover);
 
             // 设置商品标题

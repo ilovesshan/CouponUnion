@@ -20,7 +20,6 @@ import com.ilovesshan.couponunion.presenter.impl.HomeCategoryDetailPresenter;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategoryDetailAdapter;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategorySwiperAdapter;
 import com.ilovesshan.couponunion.ui.custom.YfNestedScrollView;
-import com.ilovesshan.couponunion.utils.LogUtil;
 import com.ilovesshan.couponunion.utils.ScreenUtil;
 import com.ilovesshan.couponunion.utils.ToastUtil;
 import com.ilovesshan.couponunion.view.IHomeCategoryDetailViewCallBack;
@@ -121,7 +120,7 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
             @Override
             public void onPageSelected(int position) {
                 int realPosition = position % swiperCountLength;
-                LogUtil.d(HomeCategoryDetailFragment.class, "position = " + position + ", realPosition = " + realPosition);
+                // LogUtil.d(HomeCategoryDetailFragment.class, "position = " + position + ", realPosition = " + realPosition);
                 changeSwiperIndicator(realPosition);
             }
 
@@ -177,7 +176,7 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
         timerTask = new TimerTask() {
             @Override
             public void run() {
-                LogUtil.d(HomeCategoryDetailFragment.class, "定时器任务 == " + categoryId);
+                // LogUtil.d(HomeCategoryDetailFragment.class, "定时器任务 == " + categoryId);
             }
         };
         timer = new Timer();
@@ -221,8 +220,8 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
         categoryId = bundle.getInt(Constants.HOME_CATEGORY_PAGER_ID);
         categoryTitle = bundle.getString(Constants.HOME_CATEGORY_PAGER_TITLE);
 
-        LogUtil.d(HomeCategoryDetailFragment.class, "categoryId = " + categoryId);
-        LogUtil.d(HomeCategoryDetailFragment.class, "categoryTitle = " + categoryTitle);
+        // LogUtil.d(HomeCategoryDetailFragment.class, "categoryId = " + categoryId);
+        // LogUtil.d(HomeCategoryDetailFragment.class, "categoryTitle = " + categoryTitle);
 
         // 请求分类数据
         homeCategoryDetailPresenter.getCategoryDetail(categoryId, 1);
@@ -233,7 +232,7 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
     @Override
     public void onCategoryDetailResult(CategoryDetail categoryDetail) {
-        LogUtil.d(HomeCategoryDetailFragment.class, "categoryDetail = " + categoryDetail);
+        // LogUtil.d(HomeCategoryDetailFragment.class, "categoryDetail = " + categoryDetail);
         homeCategoryDetailAdapter.setCategoryDetailList(categoryDetail.getData());
     }
 

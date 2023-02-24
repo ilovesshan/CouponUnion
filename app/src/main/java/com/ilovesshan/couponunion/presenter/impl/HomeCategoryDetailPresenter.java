@@ -205,7 +205,6 @@ public class HomeCategoryDetailPresenter implements IHomeCategoryDetailPresenter
         }
         currentPage++;
         currentPageInfo.put(categoryId, currentPage);
-        LogUtil.d(HomeCategoryDetailPresenter.class, "categoryId = " + categoryId + ", currentPage = " + currentPage);
         RetrofitManager.getServiceApi(HomeApi.class).getCategoryDetail(categoryId, currentPage).enqueue(new Callback<CategoryDetail>() {
             @Override
             public void onResponse(Call<CategoryDetail> call, Response<CategoryDetail> response) {

@@ -6,14 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.ilovesshan.couponunion.R;
-import com.ilovesshan.couponunion.utils.LogUtil;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -47,7 +45,6 @@ public abstract class BaseFragment extends Fragment implements BaseViewCallback 
 
     @OnClick(R.id.retry_container)
     public void retryClick(View v) {
-        LogUtil.d(BaseFragment.class, "加载失败，重新加载...");
         onRetry(v);
     }
 

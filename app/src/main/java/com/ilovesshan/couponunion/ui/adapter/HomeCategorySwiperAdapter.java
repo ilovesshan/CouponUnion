@@ -12,7 +12,6 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.bumptech.glide.Glide;
 import com.ilovesshan.couponunion.R;
 import com.ilovesshan.couponunion.model.entity.CategoryDetail;
-import com.ilovesshan.couponunion.utils.LogUtil;
 import com.ilovesshan.couponunion.utils.UrlUtil;
 
 import java.util.ArrayList;
@@ -52,7 +51,6 @@ public class HomeCategorySwiperAdapter extends PagerAdapter {
         // 轮播图图片
         ImageView swiperImage = view.findViewById(R.id.swiper_image);
         final String optimizationImageUrl = UrlUtil.getOptimizationImageUrl(swiperData.get(realPosition).getPict_url(), 400);
-        LogUtil.d(HomeCategorySwiperAdapter.class, "optimizationImageUrl = " + optimizationImageUrl);
         Glide.with(context).load(optimizationImageUrl).into(swiperImage);
         container.addView(view);
         return view;
