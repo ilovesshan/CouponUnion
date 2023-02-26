@@ -45,6 +45,7 @@ public class TicketPresenter implements ITicketPresenter {
                     responseData = response.body();
                     currentSate = BaseFragment.ViewState.SUCCESS;
                     if (callback != null) {
+                        callback.onSuccess();
                         callback.onTickCodeResult(response.body());
                     }
                 } else {

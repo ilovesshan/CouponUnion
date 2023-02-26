@@ -31,60 +31,10 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <ScrollView
+    <FrameLayout
+        android:id="@+id/ticket_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="30dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="8dp">
-
-                <ImageView
-                    android:id="@+id/goods_cover"
-                    android:layout_width="match_parent"
-                    android:layout_height="320dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/ic_launcher_round" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/goods_ticket_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/shape_ticket_code_bg"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="￥FDijsdskosaSIOASJAI￥"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/goods_ticket_receive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/shape_goods_ticket_receive"
-                android:gravity="center"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="10dp"
-                android:text="打开淘宝领券"
-                android:textColor="@color/white" />
-        </LinearLayout>
-    </ScrollView>
+        android:layout_height="match_parent"/>
 
 
 </LinearLayout>
