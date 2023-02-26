@@ -19,13 +19,13 @@ import com.ilovesshan.couponunion.model.entity.CategoryDetail;
 import com.ilovesshan.couponunion.presenter.impl.HomeCategoryDetailPresenter;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategoryDetailAdapter;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategorySwiperAdapter;
-import com.ilovesshan.couponunion.ui.custom.YfNestedScrollView;
 import com.ilovesshan.couponunion.utils.ScreenUtil;
 import com.ilovesshan.couponunion.utils.ToastUtil;
 import com.ilovesshan.couponunion.view.IHomeCategoryDetailViewCallBack;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.customviews.YfNestedScrollView;
 
 import java.util.List;
 import java.util.Timer;
