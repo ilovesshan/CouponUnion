@@ -133,18 +133,20 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
         categoryHomeContainer.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                final int measuredHeight = categoryHomeContainer.getMeasuredHeight();
-                final ViewGroup.LayoutParams layoutParams = categoryList.getLayoutParams();
+                if (categoryHomeContainer != null) {
+                    final int measuredHeight = categoryHomeContainer.getMeasuredHeight();
+                    final ViewGroup.LayoutParams layoutParams = categoryList.getLayoutParams();
 
-                // 获取(轮播图 + 标题栏的高度)
-                final int swiperAndTitleContainerMeasuredHeight = swiperAndTitleContainer.getMeasuredHeight();
-                if (swiperAndTitleContainerMeasuredHeight > 0) {
-                    categoryHomeNestedScrollView.setNeedConsumeHeight(swiperAndTitleContainerMeasuredHeight);
-                }
-                layoutParams.height = measuredHeight;
-                categoryList.setLayoutParams(layoutParams);
-                if (measuredHeight > 0) {
-                    categoryHomeContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    // 获取(轮播图 + 标题栏的高度)
+                    final int swiperAndTitleContainerMeasuredHeight = swiperAndTitleContainer.getMeasuredHeight();
+                    if (swiperAndTitleContainerMeasuredHeight > 0) {
+                        categoryHomeNestedScrollView.setNeedConsumeHeight(swiperAndTitleContainerMeasuredHeight);
+                    }
+                    layoutParams.height = measuredHeight;
+                    categoryList.setLayoutParams(layoutParams);
+                    if (measuredHeight > 0) {
+                        categoryHomeContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
                 }
             }
         });
