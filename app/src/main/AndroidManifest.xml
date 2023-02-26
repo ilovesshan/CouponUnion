@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CouponUnion">
         <activity
+            android:name=".ui.activites.TicketActivity"
+            android:exported="false"
+            android:launchMode="singleTop" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

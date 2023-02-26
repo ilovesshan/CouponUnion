@@ -13,5 +13,6 @@
     <string name="goods_reduce_after_money">券后价：%1$.2f</string>
     <string name="goods_origin_price">￥%1$.2f</string>
     <string name="goods_sales_count">%1$d已购买</string>
+    <string name="ticket_title">淘口令</string>
 
 </resources>

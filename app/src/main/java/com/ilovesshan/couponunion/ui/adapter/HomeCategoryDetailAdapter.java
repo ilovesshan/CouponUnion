@@ -32,6 +32,7 @@ import butterknife.ButterKnife;
 @SuppressLint("NonConstantResourceId")
 public class HomeCategoryDetailAdapter extends RecyclerView.Adapter<HomeCategoryDetailAdapter.InnerHolder> {
     private List<CategoryDetail.Data> categoryDetailList = new ArrayList<>();
+    private HomeCategoryDetailAdapter.OnItemClick onItemClick;
 
     @NonNull
     @Override
@@ -42,7 +43,15 @@ public class HomeCategoryDetailAdapter extends RecyclerView.Adapter<HomeCategory
 
     @Override
     public void onBindViewHolder(@NonNull InnerHolder holder, int position) {
-        holder.setData(categoryDetailList.get(position));
+        final CategoryDetail.Data data = categoryDetailList.get(position);
+        holder.setData(data);
+
+        // 设置监听事件
+        holder.itemView.setOnClickListener(v -> {
+            if (onItemClick != null) {
+                onItemClick.onClick(data);
+            }
+        });
     }
 
     @Override
@@ -91,7 +100,6 @@ public class HomeCategoryDetailAdapter extends RecyclerView.Adapter<HomeCategory
             final float finalPrice = Float.parseFloat(data.getZk_final_price());
             final float couponAmount = data.getCoupon_amount();
             final float originPrice = (couponAmount + finalPrice);
-
             // 设置商品图片
             final ViewGroup.LayoutParams layoutParams = goodsCover.getLayoutParams();
             final int targetHeight = (Math.max(layoutParams.width, layoutParams.height)) / 2;
@@ -116,5 +124,18 @@ public class HomeCategoryDetailAdapter extends RecyclerView.Adapter<HomeCategory
             // 设置已售数量
             goodsSalesCount.setText(String.format(itemView.getResources().getString(R.string.goods_sales_count), data.getVolume()));
         }
+    }
+
+
+    public void setOnItemClick(HomeCategoryDetailAdapter.OnItemClick onItemClick) {
+        this.onItemClick = onItemClick;
+    }
+
+    public void removeOnItemClick() {
+        this.onItemClick = null;
+    }
+
+    public interface OnItemClick {
+        void onClick(CategoryDetail.Data data);
     }
 }

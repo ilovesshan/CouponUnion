@@ -27,6 +27,7 @@ import java.util.List;
 
 public class HomeCategorySwiperAdapter extends PagerAdapter {
     private List<CategoryDetail.Data> swiperData = new ArrayList<>();
+    private HomeCategorySwiperAdapter.OnItemClick onItemClick;
 
     @Override
     public int getCount() {
@@ -48,6 +49,12 @@ public class HomeCategorySwiperAdapter extends PagerAdapter {
         // 实际的position
         int realPosition = position % swiperData.size();
 
+        view.setOnClickListener(v -> {
+            if (onItemClick != null) {
+                onItemClick.onClick(swiperData.get(realPosition));
+            }
+        });
+
         // 轮播图图片
         ImageView swiperImage = view.findViewById(R.id.swiper_image);
         final String optimizationImageUrl = UrlUtil.getOptimizationImageUrl(swiperData.get(realPosition).getPict_url(), 400);
@@ -65,5 +72,18 @@ public class HomeCategorySwiperAdapter extends PagerAdapter {
         this.swiperData.clear();
         this.swiperData.addAll(swiperData);
         notifyDataSetChanged();
+    }
+
+
+    public void setOnItemClick(HomeCategorySwiperAdapter.OnItemClick onItemClick) {
+        this.onItemClick = onItemClick;
+    }
+
+    public void removeOnItemClick() {
+        this.onItemClick = null;
+    }
+
+    public interface OnItemClick {
+        void onClick(CategoryDetail.Data data);
     }
 }

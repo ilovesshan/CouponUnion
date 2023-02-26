@@ -3,12 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/ic_launcher_background.xml" value="0.159" />
         <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/shape_category_title_tag.xml" value="0.1145" />
         <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/shape_goods_tag.xml" value="0.1395" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/shape_goods_ticket_receive.xml" value="0.159" />
         <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/shape_search_bar.xml" value="0.1145" />
         <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/shape_swiper_indicator_selected.xml" value="0.1395" />
         <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/shape_swiper_indicator_un_selected.xml" value="0.1395" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/shape_ticket_code_bg.xml" value="0.159" />
         <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/activity_main.xml" value="0.22395833333333334" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/activity_ticket.xml" value="0.20416666666666666" />
         <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/base_view.xml" value="0.25104166666666666" />
         <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/fragment_category_home.xml" value="0.1" />
         <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/fragment_home.xml" value="0.264" />

@@ -1,17 +1,16 @@
 package com.ilovesshan.couponunion;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.ilovesshan.couponunion.base.BaseActivity;
 import com.ilovesshan.couponunion.base.BaseFragment;
 import com.ilovesshan.couponunion.ui.fragment.HomeFragment;
 import com.ilovesshan.couponunion.ui.fragment.ProfileFragment;
@@ -20,11 +19,9 @@ import com.ilovesshan.couponunion.ui.fragment.SearchFragment;
 import com.ilovesshan.couponunion.ui.fragment.SpecialFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 @SuppressLint("NonConstantResourceId")
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.main_container)
     public FrameLayout mainContainer;
@@ -39,24 +36,20 @@ public class MainActivity extends AppCompatActivity {
     private BaseFragment profileFragment;
 
     private FragmentManager fragmentManager;
-    private Unbinder unbinder;
 
     /**
      * 上一个显示的Fragment
      */
     private BaseFragment leastFragment;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        unbinder = ButterKnife.bind(this);
-
-        initViewAndBindEvent();
-
+    protected int getActivityResourcesId() {
+        return R.layout.activity_main;
     }
 
-    private void initViewAndBindEvent() {
+    @Override
+    protected void initViewAndBindEvent() {
         homeFragment = new HomeFragment();
         recommendFragment = new RecommendFragment();
         searchFragment = new SearchFragment();
@@ -94,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     /**
      * 通过 hide 和 show 来控制fragment的显示和隐藏效果
      *
@@ -111,13 +105,5 @@ public class MainActivity extends AppCompatActivity {
         }
         this.leastFragment = baseFragment;
         fragmentTransaction.commit();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (unbinder != null) {
-            unbinder.unbind();
-        }
     }
 }

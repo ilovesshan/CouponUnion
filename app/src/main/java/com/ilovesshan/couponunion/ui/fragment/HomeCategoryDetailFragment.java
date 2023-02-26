@@ -1,7 +1,9 @@
 package com.ilovesshan.couponunion.ui.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -14,14 +16,16 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.ilovesshan.couponunion.R;
 import com.ilovesshan.couponunion.base.BaseFragment;
+import com.ilovesshan.couponunion.config.ApiConfig;
 import com.ilovesshan.couponunion.config.Constants;
 import com.ilovesshan.couponunion.entity.CategoryDetail;
+import com.ilovesshan.couponunion.interfaces.view.IHomeCategoryDetailViewCallBack;
 import com.ilovesshan.couponunion.presenter.HomeCategoryDetailPresenter;
+import com.ilovesshan.couponunion.ui.activites.TicketActivity;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategoryDetailAdapter;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategorySwiperAdapter;
 import com.ilovesshan.couponunion.utils.ScreenUtil;
 import com.ilovesshan.couponunion.utils.ToastUtil;
-import com.ilovesshan.couponunion.interfaces.view.IHomeCategoryDetailViewCallBack;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
@@ -111,6 +115,16 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
         homeCategorySwiperAdapter = new HomeCategorySwiperAdapter();
         categorySwiper.setAdapter(homeCategorySwiperAdapter);
 
+        // 分类列表 item点击事件
+        homeCategoryDetailAdapter.setOnItemClick(data -> {
+            HandleJumpToTickPage(data);
+        });
+
+        // 轮播图 item点击事件
+        homeCategorySwiperAdapter.setOnItemClick(data -> {
+            HandleJumpToTickPage(data);
+        });
+
         // 轮播图切换监听
         categorySwiper.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -119,9 +133,10 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
             @Override
             public void onPageSelected(int position) {
-                int realPosition = position % swiperCountLength;
-                // LogUtil.d(HomeCategoryDetailFragment.class, "position = " + position + ", realPosition = " + realPosition);
-                changeSwiperIndicator(realPosition);
+                if (swiperCountLength != 0) {
+                    int realPosition = position % swiperCountLength;
+                    changeSwiperIndicator(realPosition);
+                }
             }
 
             @Override
@@ -167,8 +182,20 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
             homeCategoryDetailPresenter.loadMore(categoryId);
         });
 
-        // TODO:  开启定时器任务 进行轮播图自动轮播
+    }
 
+    /**
+     * 处理跳转到领券界面的逻辑
+     *
+     * @param data
+     */
+    private void HandleJumpToTickPage(CategoryDetail.Data data) {
+        final String targetUrl = TextUtils.isEmpty(data.getCoupon_click_url()) ? data.getClick_url() : data.getCoupon_click_url();
+        final Intent intent = new Intent(getContext(), TicketActivity.class);
+        intent.putExtra("title", data.getTitle());
+        intent.putExtra("clickUrl", ApiConfig.PROTOCOL + targetUrl);
+        intent.putExtra("cover", ApiConfig.PROTOCOL + data.getPict_url());
+        startActivity(intent);
     }
 
 

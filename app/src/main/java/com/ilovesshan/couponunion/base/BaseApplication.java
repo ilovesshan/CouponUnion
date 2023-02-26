@@ -2,6 +2,7 @@ package com.ilovesshan.couponunion.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Handler;
 
 import com.ilovesshan.couponunion.utils.LogUtil;
 
@@ -15,6 +16,7 @@ import com.ilovesshan.couponunion.utils.LogUtil;
 public class BaseApplication extends Application {
 
     private static Context context;
+    private static Handler handler;
 
     @Override
     public void onCreate() {
@@ -27,9 +29,16 @@ public class BaseApplication extends Application {
         context = getBaseContext();
         // 初始化日志工具
         LogUtil.init(getPackageName(), false);
+
+        // 初始化mHandler
+        handler = new Handler();
     }
 
     public static Context getContext() {
         return context;
+    }
+
+    public static Handler getHandler() {
+        return handler;
     }
 }
