@@ -11,7 +11,7 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
 import com.ilovesshan.couponunion.R;
-import com.ilovesshan.couponunion.model.entity.CategoryDetail;
+import com.ilovesshan.couponunion.entity.CategoryDetail;
 import com.ilovesshan.couponunion.utils.UrlUtil;
 
 import java.util.ArrayList;

@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.ilovesshan.couponunion.model.entity.Category;
+import com.ilovesshan.couponunion.entity.Category;
 import com.ilovesshan.couponunion.ui.fragment.HomeCategoryDetailFragment;
 
 import java.util.ArrayList;

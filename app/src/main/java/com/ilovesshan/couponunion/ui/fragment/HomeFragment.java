@@ -12,11 +12,11 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.ilovesshan.couponunion.R;
 import com.ilovesshan.couponunion.base.BaseFragment;
-import com.ilovesshan.couponunion.model.entity.Category;
-import com.ilovesshan.couponunion.presenter.IHomePresenter;
-import com.ilovesshan.couponunion.presenter.impl.HomePresenter;
+import com.ilovesshan.couponunion.entity.Category;
+import com.ilovesshan.couponunion.interfaces.presenter.IHomePresenter;
+import com.ilovesshan.couponunion.presenter.HomePresenter;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategoryAdapter;
-import com.ilovesshan.couponunion.view.IHomeViewCallback;
+import com.ilovesshan.couponunion.interfaces.view.IHomeViewCallback;
 
 import butterknife.BindView;
 

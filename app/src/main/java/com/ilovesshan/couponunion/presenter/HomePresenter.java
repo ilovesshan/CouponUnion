@@ -1,11 +1,11 @@
-package com.ilovesshan.couponunion.presenter.impl;
+package com.ilovesshan.couponunion.presenter;
 
-import com.ilovesshan.couponunion.model.api.HomeApi;
-import com.ilovesshan.couponunion.model.entity.Category;
-import com.ilovesshan.couponunion.presenter.IHomePresenter;
+import com.ilovesshan.couponunion.model.HomeModel;
+import com.ilovesshan.couponunion.entity.Category;
+import com.ilovesshan.couponunion.interfaces.presenter.IHomePresenter;
 import com.ilovesshan.couponunion.utils.LogUtil;
 import com.ilovesshan.couponunion.utils.RetrofitManager;
-import com.ilovesshan.couponunion.view.IHomeViewCallback;
+import com.ilovesshan.couponunion.interfaces.view.IHomeViewCallback;
 
 import java.net.HttpURLConnection;
 
@@ -29,7 +29,7 @@ public class HomePresenter implements IHomePresenter {
             // 开始加载 显示loading
             homeViewCallback.onLoading();
 
-            RetrofitManager.getServiceApi(HomeApi.class).getCategory().enqueue(new Callback<Category>() {
+            RetrofitManager.getServiceApi(HomeModel.class).getCategory().enqueue(new Callback<Category>() {
                 @Override
                 public void onResponse(Call<Category> call, Response<Category> response) {
                     final int code = response.code();

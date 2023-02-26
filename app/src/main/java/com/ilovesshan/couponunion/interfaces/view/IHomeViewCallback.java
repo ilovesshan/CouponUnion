@@ -1,7 +1,7 @@
-package com.ilovesshan.couponunion.view;
+package com.ilovesshan.couponunion.interfaces.view;
 
 import com.ilovesshan.couponunion.base.BaseViewCallback;
-import com.ilovesshan.couponunion.model.entity.Category;
+import com.ilovesshan.couponunion.entity.Category;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,7 +1,7 @@
-package com.ilovesshan.couponunion.presenter;
+package com.ilovesshan.couponunion.interfaces.presenter;
 
 import com.ilovesshan.couponunion.base.BasePresenter;
-import com.ilovesshan.couponunion.view.IHomeCategoryDetailViewCallBack;
+import com.ilovesshan.couponunion.interfaces.view.IHomeCategoryDetailViewCallBack;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,12 +1,12 @@
-package com.ilovesshan.couponunion.presenter.impl;
+package com.ilovesshan.couponunion.presenter;
 
 import com.ilovesshan.couponunion.config.Constants;
-import com.ilovesshan.couponunion.model.api.HomeApi;
-import com.ilovesshan.couponunion.model.entity.CategoryDetail;
-import com.ilovesshan.couponunion.presenter.IHomeCategoryDetailPresenter;
+import com.ilovesshan.couponunion.model.HomeModel;
+import com.ilovesshan.couponunion.entity.CategoryDetail;
+import com.ilovesshan.couponunion.interfaces.presenter.IHomeCategoryDetailPresenter;
 import com.ilovesshan.couponunion.utils.LogUtil;
 import com.ilovesshan.couponunion.utils.RetrofitManager;
-import com.ilovesshan.couponunion.view.IHomeCategoryDetailViewCallBack;
+import com.ilovesshan.couponunion.interfaces.view.IHomeCategoryDetailViewCallBack;
 
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ public class HomeCategoryDetailPresenter implements IHomeCategoryDetailPresenter
                 callBack.onLoading();
             }
         }
-        RetrofitManager.getServiceApi(HomeApi.class).getCategoryDetail(categoryId, currentPage).enqueue(new Callback<CategoryDetail>() {
+        RetrofitManager.getServiceApi(HomeModel.class).getCategoryDetail(categoryId, currentPage).enqueue(new Callback<CategoryDetail>() {
             @Override
             public void onResponse(Call<CategoryDetail> call, Response<CategoryDetail> response) {
                 final int code = response.code();
@@ -205,7 +205,7 @@ public class HomeCategoryDetailPresenter implements IHomeCategoryDetailPresenter
         }
         currentPage++;
         currentPageInfo.put(categoryId, currentPage);
-        RetrofitManager.getServiceApi(HomeApi.class).getCategoryDetail(categoryId, currentPage).enqueue(new Callback<CategoryDetail>() {
+        RetrofitManager.getServiceApi(HomeModel.class).getCategoryDetail(categoryId, currentPage).enqueue(new Callback<CategoryDetail>() {
             @Override
             public void onResponse(Call<CategoryDetail> call, Response<CategoryDetail> response) {
                 final int code = response.code();

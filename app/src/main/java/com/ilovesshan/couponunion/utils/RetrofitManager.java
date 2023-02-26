@@ -1,8 +1,6 @@
 package com.ilovesshan.couponunion.utils;
 
-import com.google.gson.Gson;
 import com.ilovesshan.couponunion.config.ApiConfig;
-import com.ilovesshan.couponunion.model.api.HomeApi;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

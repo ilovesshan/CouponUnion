@@ -1,7 +1,5 @@
 package com.ilovesshan.couponunion.base;
 
-import com.ilovesshan.couponunion.view.IHomeViewCallback;
-
 /**
  * Created with IntelliJ IDEA.
  *

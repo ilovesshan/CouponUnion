@@ -1,4 +1,4 @@
-package com.ilovesshan.couponunion.model.entity;
+package com.ilovesshan.couponunion.entity;
 
 import java.util.List;
 
