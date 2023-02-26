@@ -34,10 +34,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="220dp">
 
-                        <androidx.viewpager.widget.ViewPager
+                        <com.ilovesshan.couponunion.ui.custom.SwiperViewPager
                             android:id="@+id/category_swiper"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+                            app:auto_lopper="true"
+                            app:duration="3000" />
 
                         <LinearLayout
                             android:id="@+id/swiper_indicator_container"

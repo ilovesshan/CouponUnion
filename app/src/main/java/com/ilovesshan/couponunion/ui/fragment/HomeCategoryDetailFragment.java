@@ -171,28 +171,6 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
     }
 
-    /**
-     * 开启定时器任务 进行轮播图自动轮播
-     */
-    private void startLopperTask() {
-        timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                // LogUtil.d(HomeCategoryDetailFragment.class, "定时器任务 == " + categoryId);
-            }
-        };
-        timer = new Timer();
-        timer.schedule(timerTask, 2000, 2000);
-    }
-
-    /**
-     * 关闭定时器任务
-     */
-    private void stopLopperTask() {
-        if (timerTask != null) timerTask.cancel();
-        if (timer != null) timer.cancel();
-    }
-
 
     /**
      * 改变轮播图指示器点
@@ -200,12 +178,14 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
      * @param realPosition 当前选中点索引
      */
     private void changeSwiperIndicator(int realPosition) {
-        for (int i = 0; i < swiperIndicatorSwiper.getChildCount(); i++) {
-            final View swiperChild = swiperIndicatorSwiper.getChildAt(i);
-            if (i == realPosition) {
-                swiperChild.setBackgroundResource(R.drawable.shape_swiper_indicator_selected);
-            } else {
-                swiperChild.setBackgroundResource(R.drawable.shape_swiper_indicator_un_selected);
+        if (swiperIndicatorSwiper != null) {
+            for (int i = 0; i < swiperIndicatorSwiper.getChildCount(); i++) {
+                final View swiperChild = swiperIndicatorSwiper.getChildAt(i);
+                if (i == realPosition) {
+                    swiperChild.setBackgroundResource(R.drawable.shape_swiper_indicator_selected);
+                } else {
+                    swiperChild.setBackgroundResource(R.drawable.shape_swiper_indicator_un_selected);
+                }
             }
         }
     }
@@ -222,9 +202,6 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
         categoryId = bundle.getInt(Constants.HOME_CATEGORY_PAGER_ID);
         categoryTitle = bundle.getString(Constants.HOME_CATEGORY_PAGER_TITLE);
 
-        // LogUtil.d(HomeCategoryDetailFragment.class, "categoryId = " + categoryId);
-        // LogUtil.d(HomeCategoryDetailFragment.class, "categoryTitle = " + categoryTitle);
-
         // 请求分类数据
         homeCategoryDetailPresenter.getCategoryDetail(categoryId, 1);
 
@@ -234,7 +211,6 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
     @Override
     public void onCategoryDetailResult(CategoryDetail categoryDetail) {
-        // LogUtil.d(HomeCategoryDetailFragment.class, "categoryDetail = " + categoryDetail);
         homeCategoryDetailAdapter.setCategoryDetailList(categoryDetail.getData());
     }
 
@@ -297,12 +273,10 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
         if (homeCategoryDetailPresenter != null) {
             homeCategoryDetailPresenter.unRegisterViewCallBack(this);
         }
-        // stopLopperTask();
     }
 
     @Override
     protected void onRetry(View v) {
-        //TODO: 需要考虑页码的问题
         homeCategoryDetailPresenter.getCategoryDetail(categoryId, 1);
     }
 }
