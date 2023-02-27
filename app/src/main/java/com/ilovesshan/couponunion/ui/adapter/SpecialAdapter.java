@@ -105,7 +105,7 @@ public class SpecialAdapter extends RecyclerView.Adapter<SpecialAdapter.InnerHol
             goodsOriginPrice.getPaint().setAntiAlias(true);
 
             // 最终价
-            goodsReduceAfterPrice.setText(String.format(itemView.getResources().getString(R.string.goods_reduce_after_money), Float.parseFloat(data.getZk_final_price())));
+            goodsReduceAfterPrice.setText(String.format(itemView.getResources().getString(R.string.goods_reduce_after_money), (Float.parseFloat(data.getZk_final_price()) - commonAmount)));
         }
     }
 

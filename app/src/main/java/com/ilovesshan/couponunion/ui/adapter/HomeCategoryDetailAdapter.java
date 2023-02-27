@@ -97,8 +97,8 @@ public class HomeCategoryDetailAdapter extends RecyclerView.Adapter<HomeCategory
         }
 
         public void setData(CategoryDetail.Data data) {
-            final float finalPrice = Float.parseFloat(data.getZk_final_price());
             final float couponAmount = data.getCoupon_amount();
+            final float finalPrice = Float.parseFloat(data.getZk_final_price()) - couponAmount;
             final float originPrice = (couponAmount + finalPrice);
             // 设置商品图片
             final ViewGroup.LayoutParams layoutParams = goodsCover.getLayoutParams();
