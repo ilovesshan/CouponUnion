@@ -44,7 +44,7 @@ public class HomeCategoryDetailPresenter implements IHomeCategoryDetailPresenter
     private Map<Integer, Integer> currentPageInfo = new HashMap<>();
     private Integer currentPage;
 
-    private HomeCategoryDetailPresenter() {
+    public HomeCategoryDetailPresenter() {
     }
 
     public static HomeCategoryDetailPresenter getInstance() {

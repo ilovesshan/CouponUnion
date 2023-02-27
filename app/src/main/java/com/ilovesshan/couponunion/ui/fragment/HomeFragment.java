@@ -14,9 +14,9 @@ import com.ilovesshan.couponunion.R;
 import com.ilovesshan.couponunion.base.BaseFragment;
 import com.ilovesshan.couponunion.entity.Category;
 import com.ilovesshan.couponunion.interfaces.presenter.IHomePresenter;
-import com.ilovesshan.couponunion.presenter.HomePresenter;
-import com.ilovesshan.couponunion.ui.adapter.HomeCategoryAdapter;
 import com.ilovesshan.couponunion.interfaces.view.IHomeViewCallback;
+import com.ilovesshan.couponunion.ui.adapter.HomeCategoryAdapter;
+import com.ilovesshan.couponunion.utils.PresenterManager;
 
 import butterknife.BindView;
 
@@ -56,7 +56,7 @@ public class HomeFragment extends BaseFragment implements IHomeViewCallback {
 
     @Override
     protected void initPresenter() {
-        presenter = new HomePresenter();
+        presenter = PresenterManager.getInstance().getHomePresenter();
         presenter.registerViewCallBack(this);
     }
 

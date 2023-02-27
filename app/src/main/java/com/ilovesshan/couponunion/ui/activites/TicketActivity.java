@@ -18,6 +18,7 @@ import com.ilovesshan.couponunion.entity.Ticket;
 import com.ilovesshan.couponunion.interfaces.view.ITicketViewCallback;
 import com.ilovesshan.couponunion.presenter.TicketPresenter;
 import com.ilovesshan.couponunion.utils.AppUtil;
+import com.ilovesshan.couponunion.utils.PresenterManager;
 import com.ilovesshan.couponunion.utils.ToastUtil;
 import com.ilovesshan.couponunion.utils.UILoader;
 
@@ -101,7 +102,7 @@ public class TicketActivity extends BaseActivity implements ITicketViewCallback 
         clickUrl = intent.getStringExtra("clickUrl");
         cover = intent.getStringExtra("cover");
 
-        ticketPresenter = new TicketPresenter();
+        ticketPresenter = PresenterManager.getInstance().getTicketPresenter();
         ticketPresenter.registerViewCallBack(this);
 
         // 发送网络请求 请求淘口令

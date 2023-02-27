@@ -24,6 +24,7 @@ import com.ilovesshan.couponunion.presenter.HomeCategoryDetailPresenter;
 import com.ilovesshan.couponunion.ui.activites.TicketActivity;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategoryDetailAdapter;
 import com.ilovesshan.couponunion.ui.adapter.HomeCategorySwiperAdapter;
+import com.ilovesshan.couponunion.utils.PresenterManager;
 import com.ilovesshan.couponunion.utils.ScreenUtil;
 import com.ilovesshan.couponunion.utils.ToastUtil;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
@@ -219,7 +220,7 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
     @Override
     protected void initPresenter() {
-        homeCategoryDetailPresenter = HomeCategoryDetailPresenter.getInstance();
+        homeCategoryDetailPresenter = PresenterManager.getInstance().getHomeCategoryDetailPresenter();
         homeCategoryDetailPresenter.registerViewCallBack(this);
     }
 
