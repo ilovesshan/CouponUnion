@@ -287,7 +287,7 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
     @Override
     public void onLoadMoreEmpty() {
         ToastUtil.showMessage("没有更多数据啦！");
-        smartRefreshLayout.finishLoadMore(0, false, false);
+        smartRefreshLayout.finishLoadMore(0, true, false);
     }
 
     @Override

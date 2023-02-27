@@ -57,7 +57,7 @@ public class RecommendFragment extends BaseFragment implements IRecommendViewCal
 
 
         // 获取presenter实例 和 注册 view回调接口
-        recommendPresenter = PresenterManager.getRecommendPresenter();
+        recommendPresenter = PresenterManager.getInstance().getRecommendPresenter();
         recommendPresenter.registerViewCallBack(this);
 
         // 设置适配器以及事件监听和布局管理器

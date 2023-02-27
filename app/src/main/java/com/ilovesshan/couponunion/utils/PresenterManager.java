@@ -3,6 +3,7 @@ package com.ilovesshan.couponunion.utils;
 import com.ilovesshan.couponunion.presenter.HomeCategoryDetailPresenter;
 import com.ilovesshan.couponunion.presenter.HomePresenter;
 import com.ilovesshan.couponunion.presenter.RecommendPresenter;
+import com.ilovesshan.couponunion.presenter.SpecialPresenter;
 import com.ilovesshan.couponunion.presenter.TicketPresenter;
 
 /**
@@ -19,6 +20,7 @@ public class PresenterManager {
     private static HomePresenter homePresenter;
     private static TicketPresenter ticketPresenter;
     private static RecommendPresenter recommendPresenter;
+    private static SpecialPresenter specialPresenter;
 
     private PresenterManager() {
     }
@@ -31,6 +33,7 @@ public class PresenterManager {
                 homePresenter = new HomePresenter();
                 ticketPresenter = new TicketPresenter();
                 recommendPresenter = new RecommendPresenter();
+                specialPresenter = new SpecialPresenter();
             }
         }
         return PresenterManager;
@@ -48,7 +51,7 @@ public class PresenterManager {
         return ticketPresenter;
     }
 
-    public static RecommendPresenter getRecommendPresenter() {
-        return recommendPresenter;
-    }
+    public  RecommendPresenter getRecommendPresenter() { return recommendPresenter; }
+
+    public  SpecialPresenter getSpecialPresenter() { return specialPresenter; }
 }

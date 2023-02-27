@@ -59,12 +59,12 @@ public class TicketPresenter implements ITicketPresenter {
 
             @Override
             public void onFailure(Call<Ticket> call, Throwable t) {
-                LogUtil.d(HomePresenter.class, "请求失败: " + t.getMessage());
-                t.printStackTrace();
                 if (callback != null) {
                     callback.onError();
                 }
                 currentSate = BaseFragment.ViewState.ERROR;
+                LogUtil.d(HomePresenter.class, "请求失败: " + t.getMessage());
+                t.printStackTrace();
             }
         });
     }

@@ -68,11 +68,12 @@ public class RecommendNavAdapter extends RecyclerView.Adapter<RecommendNavAdapte
 
     public class InnerHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.recommend_nav_title)
         public TextView recommendNavTitle;
 
         public InnerHolder(@NonNull View itemView) {
             super(itemView);
-            recommendNavTitle = itemView.findViewById(R.id.recommend_nav_title);
+            ButterKnife.bind(this, itemView);
         }
 
         public void setData(RecommendNav.Data data) {
