@@ -4,23 +4,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn1"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Btn1" />
+        android:layout_height="49dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="推荐"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btn2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Btn2" />
+        android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recommend_nav"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:background="@color/efefef" />
 
-    <Button
-        android:id="@+id/close"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CLOSE" />
+        <include android:id="@+id/state_empty_view" layout="@layout/state_empty_view" />
 
+        <!--<androidx.recyclerview.widget.RecyclerView-->
+        <!--    android:id="@+id/recommend_nav_list"-->
+        <!--    android:layout_width="match_parent"-->
+        <!--    android:layout_height="match_parent"-->
+        <!--    android:layout_marginLeft="10dp"-->
+        <!--    android:background="@color/white" />-->
+    </LinearLayout>
 </LinearLayout>

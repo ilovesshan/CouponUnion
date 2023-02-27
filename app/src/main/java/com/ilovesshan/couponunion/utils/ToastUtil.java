@@ -42,10 +42,9 @@ public class ToastUtil {
     public static void showLoading(Context context, String message, boolean canDismiss) {
         if (progressDialog == null) {
             progressDialog = new ProgressDialog(context);
-        } else {
             progressDialog.setCancelable(canDismiss);
-            progressDialog.setMessage(TextUtils.isEmpty(message) ? "正在努力加载中..." : message);
         }
+        progressDialog.setMessage(TextUtils.isEmpty(message) ? "正在努力加载中..." : message);
         progressDialog.show();
     }
 
@@ -59,9 +58,8 @@ public class ToastUtil {
     public static void showLoading(Context context, String message) {
         if (progressDialog == null) {
             progressDialog = new ProgressDialog(context);
-        } else {
-            progressDialog.setMessage(TextUtils.isEmpty(message) ? "正在努力加载中..." : message);
         }
+        progressDialog.setMessage(TextUtils.isEmpty(message) ? "正在努力加载中..." : message);
         progressDialog.show();
     }
 

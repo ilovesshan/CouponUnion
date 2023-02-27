@@ -11,14 +11,15 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@mipmap/view_state_empty" />
 
         <TextView
+            android:id="@+id/state_empty_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="内容为空..."
             android:textSize="14sp" />
