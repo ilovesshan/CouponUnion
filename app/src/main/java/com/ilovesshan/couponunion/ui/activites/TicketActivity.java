@@ -78,7 +78,7 @@ public class TicketActivity extends BaseActivity implements ITicketViewCallback 
                     if (installedTaoApp) {
                         AppUtil.jumpToApp(TicketActivity.this, "com.taobao.taobao", "com.taobao.tao.TBMainActivity");
                     } else {
-                        ToastUtil.show("复制成功，您也可以打开淘宝粘贴领券优惠券!!");
+                        ToastUtil.showMessage("复制成功，您也可以打开淘宝粘贴领券优惠券!!");
                     }
                 });
                 return view;

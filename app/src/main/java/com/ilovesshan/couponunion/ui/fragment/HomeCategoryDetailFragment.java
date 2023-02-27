@@ -244,7 +244,7 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
     @Override
     public void onCategoryDetailLoadMoreResult(CategoryDetail categoryDetail) {
-        ToastUtil.show("成功加载了" + categoryDetail.getData().size() + "条数据!");
+        ToastUtil.showMessage("成功加载了" + categoryDetail.getData().size() + "条数据!");
         homeCategoryDetailAdapter.addData(categoryDetail.getData());
         smartRefreshLayout.finishLoadMore(true);
     }
@@ -280,13 +280,13 @@ public class HomeCategoryDetailFragment extends BaseFragment implements IHomeCat
 
     @Override
     public void onLoadMoreError() {
-        ToastUtil.show("加载失败了，稍后再试试吧！");
+        ToastUtil.showMessage("加载失败了，稍后再试试吧！");
         smartRefreshLayout.finishLoadMore(false);
     }
 
     @Override
     public void onLoadMoreEmpty() {
-        ToastUtil.show("没有更多数据啦！");
+        ToastUtil.showMessage("没有更多数据啦！");
         smartRefreshLayout.finishLoadMore(0, false, false);
     }
 
