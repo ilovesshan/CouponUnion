@@ -3,7 +3,37 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/activity_main.xml" value="0.14375" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/ic_launcher_background.xml" value="0.159" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/shape_category_title_tag.xml" value="0.1145" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/shape_goods_tag.xml" value="0.1395" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/shape_goods_ticket_receive.xml" value="0.159" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/shape_search_bar.xml" value="0.1145" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/shape_swiper_indicator_selected.xml" value="0.1395" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/shape_swiper_indicator_un_selected.xml" value="0.1395" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/drawable/shape_ticket_code_bg.xml" value="0.159" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/activity_main.xml" value="0.22395833333333334" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/activity_ticket.xml" value="0.20416666666666666" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/activity_ticket_detail.xml" value="0.23541666666666666" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/base_view.xml" value="0.25104166666666666" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/fragment_category_home.xml" value="0.1" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/fragment_home_category_swiper.xml" value="0.25104166666666666" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/fragment_home_custom.xml" value="0.25104166666666666" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/fragment_profile.xml" value="0.25104166666666666" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/fragment_recommend.xml" value="0.25104166666666666" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/fragment_special.xml" value="0.25104166666666666" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/item_home_category.xml" value="0.264" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/item_home_swiper.xml" value="0.23541666666666666" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/item_recommend_nav.xml" value="0.25104166666666666" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/item_special.xml" value="0.25104166666666666" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/state_base_view.xml" value="0.1515625" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/state_empty_view.xml" value="0.1984375" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/state_erropr_view.xml" value="0.1984375" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/state_error_view.xml" value="0.1921875" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/layout/state_loading_view.xml" value="0.1984375" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/menu/my_navigation_items.xml" value="0.23541666666666666" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/menu/navigation_items.xml" value="0.2" />
+        <entry key="..\:/workspace/android/CouponUnion/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>
   </component>

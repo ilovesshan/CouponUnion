@@ -3,6 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 }
 dependencyResolutionManagement {
@@ -10,7 +11,20 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 }
 rootProject.name = "CouponUnion"
 include ':app'
+include ':refresh-layout', ':refresh-header', ':refresh-footer'
+
+include ':refresh-layout-kernel'
+include ':refresh-footer-classics'
+include ':refresh-header-classics'
+include ':refresh-drawable-paint'
+include ':refresh-drawable-path'
+include ':refresh-footer-ball'
+include ':refresh-header-falsify'
+include ':refresh-header-radar'
+include ':refresh-header-material'
+include ':refresh-header-two-level'
