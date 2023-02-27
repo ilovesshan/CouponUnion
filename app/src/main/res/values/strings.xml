@@ -16,4 +16,7 @@
     <string name="ticket_title">淘口令</string>
     <string name="no_date_text">%1$s暂无推荐数据~~</string>
 
+
+    <string name="recommend_nav_title">推荐宝贝</string>
+
 </resources>
